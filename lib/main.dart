@@ -1,4 +1,5 @@
-import 'package:ecommerce/pages/intro.dart';
+import '../pages/home.dart';
+import '../pages/intro.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,9 +11,13 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: IntroPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const IntroPage(),
+        '/home': (context) => const HomePage(),
+      },
     );
   }
 }
