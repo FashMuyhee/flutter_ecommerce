@@ -35,8 +35,42 @@ class _HomePageState extends State<HomePage> {
         }),
       ),
       body: _pages[currentTabIndex],
-      drawer: const Drawer(
-        backgroundColor: Colors.black12,
+      drawer: Drawer(
+        backgroundColor: const Color.fromRGBO(33, 33, 33, 1),
+        child: Column(
+          children: [
+            DrawerHeader(
+              margin: const EdgeInsets.only(bottom: 10),
+              child: Image.asset('assets/images/reebok-logo.png'),
+            ),
+            const ListTile(
+              leading: Icon(
+                Icons.home,
+                color: Colors.white,
+              ),
+              title: Text(
+                'Home',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+              ),
+            ),
+            const ListTile(
+              leading: Icon(
+                Icons.info,
+                color: Colors.white,
+              ),
+              title: Text(
+                'About',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+              ),
+            )
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavBar(
         onTabChange: (index) => onTabChange(index),
