@@ -1,3 +1,4 @@
+import 'package:ecommerce/models/Shoe.dart';
 import 'package:ecommerce/widgets/shoe-tile.dart';
 import 'package:flutter/material.dart';
 
@@ -64,10 +65,20 @@ class ShopPage extends StatelessWidget {
             itemCount: 5,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return ShoeTile();
+              Shoe shoe = Shoe(
+                  name: 'Air Jordan',
+                  price: '250',
+                  imagePath: 'assets/images/shoes_1.png',
+                  description: 'Very good shoe');
+              return ShoeTile(
+                shoe: shoe,
+              );
             },
           ),
         ),
+        const SizedBox(
+          height: 70,
+        )
       ],
     );
   }
