@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class CartTile extends StatelessWidget {
   final Shoe item;
-  final void Function() onRemove;
+  final void Function(Shoe i) onRemove;
   const CartTile({super.key, required this.item, required this.onRemove});
 
   @override
@@ -15,15 +15,24 @@ class CartTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(7),
       ),
       child: ListTile(
-        leading: CircleAvatar(
-            backgroundImage: AssetImage(item.imagePath), radius: 30,
-            ),
+        leading: Image.asset(
+          item.imagePath,
+          fit: BoxFit.contain,
+          width: 60,
+        ),
         title: Text(
           item.name,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Text(item.price),
-        // trailing: ,
+        trailing: IconButton(
+          icon: const Icon(
+            Icons.delete,
+            color: Colors.red,
+          ),
+          color: Colors.green,
+          onPressed: () => onRemove(item),
+        ),
       ),
     );
   }

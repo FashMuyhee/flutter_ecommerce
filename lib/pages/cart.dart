@@ -4,13 +4,47 @@ import 'package:ecommerce/widgets/cart-tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({super.key});
 
-  void onRemoveItem(){
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
 
+class _CartPageState extends State<CartPage> {
+  void openRemoveConfirmation(Shoe i) {
+    // const String productName = i;
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          surfaceTintColor: Colors.grey,
+          title: const Text('Remove Item'),
+          content: const SingleChildScrollView(
+            child:
+                Text('Are you sure you want to remove this item from cart ?'),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Delete'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                context.read<CartProvider>().removeItemFromCart(i);
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
-  
+
   @override
   Widget build(BuildContext context) {
     final cart = context.watch<CartProvider>().cart;
@@ -30,7 +64,7 @@ class CartPage extends StatelessWidget {
           itemCount: cart.length,
           itemBuilder: (context, index) {
             Shoe cartItem = cart[index];
-            return CartTile(item: cartItem, onRemove: () {});
+            return CartTile(item: cartItem, onRemove: openRemoveConfirmation);
           },
         ),
       ),
