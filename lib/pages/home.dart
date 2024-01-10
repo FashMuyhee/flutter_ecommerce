@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int currentTabIndex = 0;
-  final List<Widget> _pages = [const ShopPage(), const CartPage()];
+  final List<Widget> _pages = [ShopPage(), const CartPage()];
 
   void onTabChange(int index) {
     setState(() {
