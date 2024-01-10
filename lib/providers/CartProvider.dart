@@ -5,9 +5,12 @@ class CartProvider extends ChangeNotifier {
   List<Shoe> cart = [];
 
   void addItemToCart(Shoe shoe) {
-    // if(cart.)
     cart.add(shoe);
     notifyListeners();
+  }
+
+  bool isAdded(Shoe shoe) {
+    return cart.contains(shoe);
   }
 
   void removeItemFromCart(Shoe shoe) {
