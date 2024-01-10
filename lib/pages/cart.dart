@@ -60,13 +60,21 @@ class _CartPageState extends State<CartPage> {
       const SizedBox(height: 50),
       // cart list
       Expanded(
-        child: ListView.builder(
-          itemCount: cart.length,
-          itemBuilder: (context, index) {
-            Shoe cartItem = cart[index];
-            return CartTile(item: cartItem, onRemove: openRemoveConfirmation);
-          },
-        ),
+        child: cart.isEmpty
+            ? const Center(
+                child: Text(
+                  'Cart is Empty',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                ),
+              )
+            : ListView.builder(
+                itemCount: cart.length,
+                itemBuilder: (context, index) {
+                  Shoe cartItem = cart[index];
+                  return CartTile(
+                      item: cartItem, onRemove: openRemoveConfirmation);
+                },
+              ),
       ),
     ]);
   }
